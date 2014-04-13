@@ -7,6 +7,8 @@
     Private _t As Double    'torque as M for MathCad -> Shaft diameter
     Private _d As Double    'Shaft diameter
 
+    Public shaft As shaft
+
 
     'incoming from calculation / outgoing variables for CATIA
 
@@ -15,17 +17,19 @@
         _r = distance * (1 - 1 / tOwn * tOther)
         _t = tOwn
         _mat = mat
+        getShaft()
     End Sub
 
-    Public shaft As shaft
 
-    Private Sub getShaft(t As Double, _mat As material)
+    Private Sub getShaft()
         Dim sigma As Double = _mat.Sigma
         'here communication with mathcad script
         'in: t, sigma
         'out: d
         '************
-        _d = 0
+
+        'since mathcad does not run on my machine, i assume _d=10. =)
+        _d = 10
         shaft = New shaft(_d)
     End Sub
 
